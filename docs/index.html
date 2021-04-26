@@ -51,6 +51,7 @@
             document.getElementById("pesan").src = steg.encode(document.getElementById("text").value, Dimage);
         }
         function decode(){
+            document.getElementById("terima").value = "";
             document.getElementById("Dgambar").style.display = "block";
             document.getElementById("Dview").style.display = "none";
             var Reader = new FileReader();
