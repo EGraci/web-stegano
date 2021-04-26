@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Message</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="steganography.min.js"></script>
+</head>
+<body>
+    <h1>Encode Pesan</h1>
+    <input type="file" name="gambar" id="file" onchange="previewImage();" />
+    <div class="lihat-gambar" id="lihat-gambar">
+        <img src="" alt="Hasil Gambar" id="gambar" class="hasil-gambar">
+        <span id="view">Lihat Gambar</span>
+    </div>
+    <br>
+    <input type="text" id="text" placeholder="Pesan Rahasia">
+    <button onclick="encode()">Encode Pesan</button>
+    <br>
+    <div id="hasil">
+        <img src="" id="pesan">
+    </div>
+    <br>
+    <h1>Decode Pesan</h1>
+    <input type="file" name="gambar" id="Dfile" onchange="decode();" />
+    <div class="lihat-gambar" id="lihat-gambar">
+        <img src="" alt="Hasil Gambar" id="Dgambar" class="hasil-gambar">
+        <span id="Dview">Lihat Gambar</span>
+    </div>
+    <br>
+    <input type="hidden" id="terima" readonly />
+    <script>
+        var Dimage;
+        function previewImage() {
+            document.getElementById("gambar").style.display = "block";
+            document.getElementById("view").style.display = "none";
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("file").files[0]);
+        
+            oFReader.onload = function(oFREvent) {
+            document.getElementById("gambar").src = oFREvent.target.result;
+            Dimage = oFREvent.target.result;
+            };
+        }
+        var temp 
+        function encode(){
+            document.getElementById("hasil").style.display = "flex";
+            document.getElementById("pesan").src = steg.encode(document.getElementById("text").value, Dimage);
+        }
+        function decode(){
+            document.getElementById("Dgambar").style.display = "block";
+            document.getElementById("Dview").style.display = "none";
+            var Reader = new FileReader();
+            Reader.readAsDataURL(document.getElementById("Dfile").files[0]);
+            Reader.onload = function(oFREvent) {
+            document.getElementById("Dgambar").src = oFREvent.target.result;
+            document.getElementById("terima").value = steg.decode(oFREvent.target.result);
+            document.getElementById("terima").type = "text";
+            };
+        }
+    </script>
+</body>
+</html>

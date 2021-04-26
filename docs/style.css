@@ -1,0 +1,33 @@
+*{
+    margin:0;
+    padding:0;
+}
+.lihat-gambar{
+    width: 300px;
+    min-height: 100px;
+    border: 2px solid #ddd;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccc;
+}
+#hasil{
+    width: 300px;
+    min-height: 100px;
+    border: 2px solid #ddd;
+    margin-top: 15px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #cccc;
+}
+.hasil-gambar{
+    display: none;
+    width: 100%;
+}
+.gambar{
+    width: 100%;
+}
