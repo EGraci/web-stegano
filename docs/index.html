@@ -32,6 +32,7 @@
     </div>
     <br>
     <input type="hidden" id="terima" readonly />
+
     <script>
         var Dimage;
         function previewImage() {
@@ -45,10 +46,14 @@
             Dimage = oFREvent.target.result;
             };
         }
-        var temp 
+        // fungsi utama private message
         function encode(){
-            document.getElementById("hasil").style.display = "flex";
+            //document.getElementById("hasil").style.display = "flex"; tampilan
             document.getElementById("pesan").src = steg.encode(document.getElementById("text").value, Dimage);
+            // download
+            var data = steg.encode(document.getElementById("text").value, Dimage);
+            download(data,"Encode.png");
+
         }
         function decode(){
             document.getElementById("terima").value = "";
@@ -62,17 +67,18 @@
             document.getElementById("terima").type = "text";
             };
         }
-        function downloadimage() { 
-          var container = document.getElementById('box');
-          html2canvas(container, { allowTaint: true }).then(function (canvas) {
-                    var link = document.createElement("a");
-                    document.body.appendChild(link);
-                    link.download = "Encode_Pesan.png";
-                    link.href = canvas.toDataURL();
-                    link.target = '_blank';
-                    link.click();
-                    });
+
+        function download(uri, name) {
+            var link = document.createElement("a");
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
         }
+
+        
     </script>
 </body>
 </html>
