@@ -17,7 +17,8 @@
         <span id="view">Lihat Gambar</span>
     </div>
     <br>
-    <input type="text" id="text" placeholder="Pesan Rahasia">
+    <h3>Pesan Rahasia</h3>
+    <input type="text" id="text" placeholder="Minimal inputan text 13 digit" required> 
     <button onclick="encode()">Encode Pesan</button>
     <br>
     <div id="hasil">
@@ -48,11 +49,15 @@
         }
         // fungsi utama private message
         function encode(){
-            //document.getElementById("hasil").style.display = "flex"; tampilan
-            document.getElementById("pesan").src = steg.encode(document.getElementById("text").value, Dimage);
-            // download
-            var data = steg.encode(document.getElementById("text").value, Dimage);
-            download(data,"Encode.png");
+            if(document.getElementById("text").value.length > 13){
+                //document.getElementById("hasil").style.display = "flex"; tampilan
+                document.getElementById("pesan").src = steg.encode(document.getElementById("text").value, Dimage);
+                // download
+                var data = steg.encode(document.getElementById("text").value, Dimage);
+                download(data,"Encode.png");
+            }else{
+                alert("Pesan minimal 13 digit !!!");
+            }
 
         }
         function decode(){
